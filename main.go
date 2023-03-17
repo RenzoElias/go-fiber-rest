@@ -1,34 +1,18 @@
 package main
 
 import (
-	"fmt"
+	"go-fiber-rest/routes"
 
 	"github.com/gofiber/fiber/v2"
 )
 
-type Movie struct {
-	Title string
-	Id    int
-}
-
 func main() {
-	fmt.Println("Hello world")
 
 	app := fiber.New()
 
-	movies := []*Movie{
-		{
-			Title: "kimetsu no yaiba",
-			Id:    1,
-		},
-	}
-
-	app.Get("/", func(c *fiber.Ctx) error {
-		// return c.SendString("Hello from fiber")
-		return c.JSON(fiber.Map{
-			"movies": movies,
-		})
-	})
+	// Use router movies
+	routes.UseMoviesRoute(app)
 
 	app.Listen(":4000")
+
 }
